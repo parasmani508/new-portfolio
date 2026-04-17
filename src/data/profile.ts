@@ -34,7 +34,6 @@ export const skills = [
 export const experience = [
   {
     company: "Digital Umbrella",
-<<<<<<< HEAD
     role: "Software Developer Intern",
     period: "Sept 2024 — Present",
     location: "Roorkee, India",
@@ -54,38 +53,6 @@ export const experience = [
       "Created a company portfolio website showcasing services, projects, and team using React.js, improving client visibility by 40%.",
       "Engineered a responsive and interactive UI, leading to a 30% increase in user engagement.",
       "Tracked user behavior to optimize website performance and improve user experience.",
-=======
-    role: "Software Engineer",
-    period: "Apr 2025 — Present",
-    location: "Roorkee, Uttarakhand",
-    points: [
-      "Engineered a Theme Customization Dashboard with real-time control over typography, colors, layouts, animations and content sections.",
-      "Built Cngle Link — a multi-tenant platform for creators & brands to manage digital identity, content and links with deep customization.",
-      "Designed Blinkit-style storefronts and shipped 8+ production themes for the DailyBasket e-commerce builder used by multiple businesses.",
-    ],
-  },
-  {
-    company: "Feb Tech IT",
-    role: "Full Stack Developer",
-    period: "May 2024 — Jan 2025",
-    location: "Roorkee, Uttarakhand",
-    points: [
-      "Migrated company website from vanilla HTML/CSS/JS to React, lifting performance and maintainability.",
-      "Built Danmart Global — full e-commerce platform with 100+ products, 10+ categories, payment gateway and COD.",
-      "Developed an internal CRM managing employees, attendance, salaries, leave workflows and tasks.",
-    ],
-  },
-  {
-    company: "Web Stack Academy",
-    role: "Full Stack Developer Intern (Remote)",
-    period: "Earlier",
-    location: "Remote",
-    points: [
-      "Built a full-stack Airbnb-style booking platform for hotels and restaurants, focused on local/regional listings across India.",
-      "Frontend-heavy project — integrated multiple third-party libraries for maps, calendars, carousels and UI components to match real-world product expectations.",
-      "Connected REST APIs and databases end-to-end, gaining hands-on exposure to how production applications handle data flow, auth and state.",
-      "Learned real-world patterns: API consumption, async data handling, form validation and responsive design under mentorship.",
->>>>>>> b4759b9a991b0b3148f6f4bf4fb027987d3f1251
     ],
   },
 ];
@@ -146,20 +113,11 @@ You are a personal assistant on Paras Kumar's portfolio website.
 Answer ONLY questions about Paras. Be concise, friendly, slightly witty. Use markdown.
 If asked something unrelated, politely steer back to Paras.
 
-<<<<<<< HEAD
 ABOUT PARAS:
 - Full name: Paras Kumar.
 - Currently: Software Developer Intern at Digital Umbrella, Roorkee (Sept 2024 — Present).
 - Previously: Freelance Developer (Jan 2024), Roorkee.
 - Education: B.Tech (75%) from College of Engineering Roorkee (2019–2023). Senior Secondary (78%) from Kendriya Vidyalaya No.1, Roorkee (2018–2019).
-=======
-ABOUT VANSH:
-- Full name: Vansh Gupta. Alias: "Hustler".
-- Currently: Software Development Engineer at Digital Umbrella, Roorkee (Apr 2025 — Present).
-- Previously: Frontend Developer at Feb Tech IT, Roorkee (May 2024 — Jan 2025).
-- Before that: Full Stack Developer Intern (Remote) at Web Stack Academy — built an Airbnb-style booking platform for hotels & restaurants (local/regional India), frontend-heavy with third-party libraries, REST APIs and DB integration.
-- Education: B.Tech CSE from Quantum University Roorkee (2024). Class XII & X from MRS Memorial School, Saharanpur (PCM in 12th).
->>>>>>> b4759b9a991b0b3148f6f4bf4fb027987d3f1251
 - Location: Roorkee, Uttarakhand, India.
 - Contact: parasmani508@gmail.com, +91-9119030508.
 

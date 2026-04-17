@@ -40,13 +40,8 @@ export const Navbar = () => {
       )}
     >
       <nav className="container flex items-center justify-between">
-<<<<<<< HEAD
-        <a href="#home" className="font-mono text-base font-bold tracking-tight">
-          <span className="text-gradient">paras.dev</span>
-=======
         <a href="#home" onClick={(e) => { e.preventDefault(); scrollTo("#home"); }} className="font-mono text-base font-bold tracking-tight">
-          <span className="text-gradient">vansh.dev</span>
->>>>>>> b4759b9a991b0b3148f6f4bf4fb027987d3f1251
+          <span className="text-gradient">paras.dev</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-0.5">
