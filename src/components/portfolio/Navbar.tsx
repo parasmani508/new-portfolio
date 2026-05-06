@@ -44,7 +44,7 @@ export const Navbar = () => {
           <span className="text-gradient">paras.dev</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-0.5">
+        <ul className="hidden lg:flex items-center gap-0.5">
           {links.map((l) => (
             <li key={l.href}>
               <a
@@ -59,7 +59,7 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2">
           <a
             href={profile.resumeUrl}
             target="_blank"
@@ -79,7 +79,7 @@ export const Navbar = () => {
         </div>
 
         <button
-          className="md:hidden p-2 text-foreground"
+          className="lg:hidden p-2 text-foreground"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -88,7 +88,7 @@ export const Navbar = () => {
       </nav>
 
       {open && (
-        <div className="md:hidden mt-2 mx-4 glass rounded-2xl p-2 shadow-card">
+        <div className="lg:hidden mt-2 mx-4 glass rounded-2xl p-2 shadow-card">
           {links.map((l) => (
             <a
               key={l.href}

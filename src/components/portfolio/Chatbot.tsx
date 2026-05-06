@@ -33,6 +33,11 @@ export const Chatbot = () => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   const send = async (textOverride?: string) => {
     const text = (textOverride ?? input).trim();
     if (!text || loading) return;
@@ -124,34 +129,12 @@ export const Chatbot = () => {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
-        onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-5 right-5 z-50 h-13 w-13 rounded-full bg-gradient-primary text-primary-foreground shadow-glow-primary flex items-center justify-center hover:scale-110 transition-transform"
+        onClick={() => setOpen(true)}
+        className="fixed bottom-5 right-5 z-50 rounded-full bg-gradient-primary text-primary-foreground shadow-glow-primary flex items-center justify-center hover:scale-110 transition-transform"
         style={{ height: 52, width: 52 }}
         aria-label="Open chat"
       >
-        <AnimatePresence mode="wait">
-          {open ? (
-            <motion.div
-              key="x"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <X size={20} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="bot"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <Bot size={20} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Bot size={20} />
         {!open && (
           <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-accent animate-ping" />
         )}
@@ -159,17 +142,23 @@ export const Chatbot = () => {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.96 }}
-            transition={{ duration: 0.18 }}
-            className={cn(
-              "fixed z-50 glass rounded-3xl shadow-card flex flex-col overflow-hidden",
-              "inset-x-3 bottom-24 max-h-[75vh]",
-              "sm:inset-auto sm:right-5 sm:bottom-24 sm:w-[400px] sm:h-[580px] sm:max-h-[80vh]"
-            )}
-          >
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[2px]"
+              onClick={() => setOpen(false)}
+            />
+            <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+            <motion.div
+              initial={{ opacity: 0, y: 16, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.96 }}
+              transition={{ duration: 0.18 }}
+              className="pointer-events-auto glass rounded-3xl shadow-card flex flex-col overflow-hidden w-[90vw] max-w-[420px] h-[580px] max-h-[85vh]"
+            >
             <div className="px-4 py-3 border-b border-border/60 bg-card/50 flex items-center gap-3">
               <div className="relative">
                 <div className="h-8 w-8 rounded-full bg-gradient-primary flex items-center justify-center shadow-glow-primary">
@@ -181,9 +170,16 @@ export const Chatbot = () => {
                 <p className="font-semibold text-sm">Paras-AI</p>
                 <p className="text-xs text-muted-foreground font-mono">ask about Paras</p>
               </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="p-1.5 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                aria-label="Close chat"
+              >
+                <X size={16} />
+              </button>
             </div>
 
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto scrollbar-hide p-4 space-y-3">
               {messages.map((m, i) => {
                 if (m.role === "assistant" && !m.content) return null;
                 return (
@@ -255,7 +251,9 @@ export const Chatbot = () => {
                 {loading ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
               </button>
             </form>
-          </motion.div>
+            </motion.div>
+            </div>
+          </>
         )}
       </AnimatePresence>
     </>

@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Paras Kumar",
+  name: "Paras",
   alias: "Paras",
   role: "Software Developer",
   company: "Digital Umbrella",
@@ -11,7 +11,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/paras-mani-1b3070216/",
     instagram: "https://www.instagram.com/parasmani10/?hl=en",
   },
-  resumeUrl: "#",
+  resumeUrl: "https://drive.google.com/file/d/18qbPNzEq6sYUBenIU07HnBNwNymrRehW/view?usp=sharing",
 };
 
 export const skills = [
@@ -34,7 +34,7 @@ export const skills = [
 export const experience = [
   {
     company: "Digital Umbrella",
-    role: "Software Developer Intern",
+    role: "Software Developer",
     period: "Sept 2024 — Present",
     location: "Roorkee, India",
     points: [
@@ -109,13 +109,13 @@ export const education = [
 
 // Used by the AI chatbot system prompt
 export const bioForAI = `
-You are a personal assistant on Paras Kumar's portfolio website.
+You are a personal assistant on Paras's portfolio website.
 Answer ONLY questions about Paras. Be concise, friendly, slightly witty. Use markdown.
 If asked something unrelated, politely steer back to Paras.
 
 ABOUT PARAS:
-- Full name: Paras Kumar.
-- Currently: Software Developer Intern at Digital Umbrella, Roorkee (Sept 2024 — Present).
+- Full name: Paras.
+- Currently: Software Developer at Digital Umbrella, Roorkee (Sept 2024 — Present).
 - Previously: Freelance Developer (Jan 2024), Roorkee.
 - Education: B.Tech (75%) from College of Engineering Roorkee (2019–2023). Senior Secondary (78%) from Kendriya Vidyalaya No.1, Roorkee (2018–2019).
 - Location: Roorkee, Uttarakhand, India.

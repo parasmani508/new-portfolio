@@ -1,13 +1,16 @@
-import { corsHeaders } from "https://esm.sh/@supabase/supabase-js@2.95.0/cors";
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
 
 const BIO = `
-You are "Paras-AI" — Paras Kumar's personal assistant on his portfolio website.
+You are "Paras-AI" — Paras's personal assistant on his portfolio website.
 Answer ONLY questions about Paras. Be concise (2-5 short paragraphs max), friendly, slightly witty. Use markdown (bold, lists). Never reveal you are an LLM or mention model names.
 If asked something unrelated to Paras, politely steer back to him.
 
 ABOUT PARAS:
-- Full name: Paras Kumar.
-- Currently: Software Developer Intern at Digital Umbrella, Roorkee (Sept 2024 — Present).
+- Full name: Paras.
+- Currently: Software Developer at Digital Umbrella, Roorkee (Sept 2024 — Present).
 - Previously: Freelance Developer (Jan 2024), Roorkee, India.
 - Education: B.Tech (75%) from College of Engineering Roorkee (2019–2023). Senior Secondary (78%) from Kendriya Vidyalaya No.1, Roorkee (2018–2019).
 - Location: Roorkee, Uttarakhand, India.
@@ -52,19 +55,21 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Google Gemini via OpenAI-compatible endpoint — stream format matches what frontend expects
+    // Convert OpenAI-style messages to Gemini format
+    const contents = messages.map((m: { role: string; content: string }) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    }));
+
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?key=${GEMINI_API_KEY}&alt=sse`,
       {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${GEMINI_API_KEY}`,
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "gemini-1.5-flash",
-          messages: [{ role: "system", content: BIO }, ...messages],
-          stream: true,
+          system_instruction: { parts: [{ text: BIO }] },
+          contents,
+          generationConfig: { temperature: 0.7 },
         }),
       }
     );
@@ -84,7 +89,47 @@ Deno.serve(async (req) => {
       });
     }
 
-    return new Response(response.body, {
+    // Transform Gemini SSE → OpenAI SSE so frontend needs no changes
+    const { readable, writable } = new TransformStream();
+    const writer = writable.getWriter();
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+
+    (async () => {
+      const reader = response.body!.getReader();
+      let buf = "";
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+
+          let nl: number;
+          while ((nl = buf.indexOf("\n")) !== -1) {
+            const line = buf.slice(0, nl).trim();
+            buf = buf.slice(nl + 1);
+            if (!line.startsWith("data: ")) continue;
+            const json = line.slice(6).trim();
+            if (!json) continue;
+            try {
+              const parsed = JSON.parse(json);
+              const text = parsed.candidates?.[0]?.content?.parts?.[0]?.text;
+              if (text) {
+                const chunk = { choices: [{ delta: { content: text } }] };
+                await writer.write(encoder.encode(`data: ${JSON.stringify(chunk)}\n\n`));
+              }
+            } catch {
+              // skip malformed chunks
+            }
+          }
+        }
+      } finally {
+        await writer.write(encoder.encode("data: [DONE]\n\n"));
+        await writer.close().catch(() => {});
+      }
+    })();
+
+    return new Response(readable, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (e) {

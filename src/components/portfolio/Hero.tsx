@@ -44,7 +44,7 @@ export const Hero = () => {
       <div className="absolute -top-40 -left-40 w-[480px] h-[480px] rounded-full bg-primary/10 blur-[140px] animate-pulse-glow" />
       <div className="absolute -bottom-40 -right-40 w-[480px] h-[480px] rounded-full bg-secondary/10 blur-[140px]" />
 
-      <div className="container relative z-10 grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
+      <div className="container relative z-10 grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-14 items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,19 +58,19 @@ export const Hero = () => {
             <span className="text-xs font-mono text-primary tracking-wide">Open to work</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-[4.2rem] font-extrabold leading-[1.08] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem] font-extrabold leading-[1.08] tracking-tight">
             Hey, I'm{" "}
-            <span className="text-gradient">Paras Kumar</span>
+            <span className="text-gradient">Paras</span>
           </h1>
 
-          <p className="mt-5 text-lg sm:text-xl md:text-2xl font-mono text-muted-foreground">
+          <p className="mt-5 text-lg sm:text-xl lg:text-2xl font-mono text-muted-foreground">
             <span className="text-primary/70">{">"}</span>{" "}
             <span className="text-foreground/90">{text}</span>
             <span className="text-primary animate-blink ml-0.5">|</span>
           </p>
 
           <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-[520px] leading-[1.75]">
-            Software Developer Intern at{" "}
+            Software Developer at{" "}
             <span className="text-foreground font-semibold">Digital Umbrella</span>. I build
             scalable microservices, craft clean UIs, and turn ideas into real working products —
             from frontend to backend.
@@ -135,11 +135,11 @@ export const Hero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.18 }}
-          className="relative mx-auto hidden md:block"
+          className="relative mx-auto w-full max-w-[340px] sm:max-w-[400px] lg:max-w-none"
         >
-          <div className="relative w-72 h-72 sm:w-80 sm:h-80 animate-float">
+          <div className="relative w-full lg:w-80 animate-float">
             <div className="absolute inset-0 rounded-2xl bg-gradient-primary blur-2xl opacity-25" />
-            <div className="relative w-full h-full rounded-2xl glass glow-border p-5 flex flex-col gap-3 font-mono text-sm">
+            <div className="relative w-full rounded-2xl glass glow-border p-5 flex flex-col gap-3 font-mono text-sm">
               <div className="flex items-center gap-1.5 pb-2 border-b border-border/60">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
                 <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
@@ -147,7 +147,7 @@ export const Hero = () => {
                 <Terminal size={11} className="ml-auto text-muted-foreground/50" />
                 <span className="text-[10px] text-muted-foreground/50">paras.config.ts</span>
               </div>
-              <div className="space-y-1.5 text-xs leading-relaxed flex-1">
+              <div className="space-y-1.5 text-xs leading-relaxed">
                 <p>
                   <span className="text-secondary">export const</span>{" "}
                   <span className="text-primary">me</span> = {"{"}
@@ -158,7 +158,7 @@ export const Hero = () => {
                 </p>
                 <p className="pl-4">
                   <span className="text-accent">role</span>:{" "}
-                  <span className="text-foreground/80">"Dev Intern"</span>,
+                  <span className="text-foreground/80">"Software Developer"</span>,
                 </p>
                 <p className="pl-4">
                   <span className="text-accent">building</span>:{" "}

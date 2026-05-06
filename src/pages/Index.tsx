@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Vansh Gupta — Software Engineer & Hustler";
+    document.title = "Paras — Software Developer";
     const setMeta = (name: string, content: string) => {
       let el = document.querySelector(`meta[name="${name}"]`);
       if (!el) {
@@ -22,7 +22,7 @@ const Index = () => {
     };
     setMeta(
       "description",
-      "Vansh Gupta — Software Development Engineer at Digital Umbrella. Building multi-tenant platforms, dashboards, and developer tools with React, Next.js & NestJS."
+      "Paras — Software Developer at Digital Umbrella, Roorkee. Building scalable full-stack applications with React, Next.js, NestJS & MongoDB."
     );
   }, []);
 

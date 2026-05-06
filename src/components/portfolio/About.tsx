@@ -8,20 +8,20 @@ export const About = () => {
       <div className="container">
         <SectionHeader kicker="about" title="The story so far" />
 
-        <div className="grid md:grid-cols-5 gap-6 mt-12">
+        <div className="grid lg:grid-cols-5 gap-6 mt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-3 glass rounded-2xl p-6 sm:p-8"
+            className="lg:col-span-3 glass rounded-2xl p-6 sm:p-8"
           >
             <div className="flex items-center gap-2 text-primary mb-5">
               <Zap size={17} />
               <span className="font-mono text-xs uppercase tracking-widest">about me</span>
             </div>
             <p className="text-base sm:text-lg leading-[1.8] text-foreground/88">
-              I'm <span className="text-gradient font-bold">Paras Kumar</span> — a software
+              I'm <span className="text-gradient font-bold">Paras</span> — a software
               developer who loves turning ideas into working products. At{" "}
               <b>Digital Umbrella</b> I've built{" "}
               <span className="text-foreground font-medium">microservices</span>{" "}
@@ -43,7 +43,7 @@ export const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.12 }}
-            className="md:col-span-2 glass rounded-2xl p-6 sm:p-8"
+            className="lg:col-span-2 glass rounded-2xl p-6 sm:p-8"
           >
             <div className="flex items-center gap-2 text-secondary mb-5">
               <GraduationCap size={17} />
@@ -68,7 +68,7 @@ export const About = () => {
 export const SectionHeader = ({ kicker, title }: { kicker: string; title: string }) => (
   <div className="flex flex-col items-start">
     <span className="font-mono text-xs uppercase tracking-[0.28em] text-primary/80">{kicker}</span>
-    <h2 className="mt-2 text-3xl sm:text-4xl md:text-[2.8rem] font-extrabold tracking-tight leading-tight">
+    <h2 className="mt-2 text-3xl sm:text-4xl lg:text-[2.8rem] font-extrabold tracking-tight leading-tight">
       {title}
     </h2>
     <div className="mt-4 h-1 w-12 rounded-full bg-gradient-primary" />

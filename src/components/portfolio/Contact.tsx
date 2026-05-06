@@ -82,7 +82,7 @@ export const Contact = () => {
 
         <footer className="mt-12 pt-8 border-t border-border/60 text-center text-xs text-muted-foreground font-mono">
           <p>
-            Built by Paras Kumar — {new Date().getFullYear()} ·{" "}
+            Built by Paras — {new Date().getFullYear()} ·{" "}
             <a
               href={profile.socials.github}
               target="_blank"
